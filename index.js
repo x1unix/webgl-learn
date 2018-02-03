@@ -23,11 +23,16 @@ function main() {
   })
 }
 
+function createSquare(gl, program) {
+  const buffVertex = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER);
+}
+
 function createTriangle(gl, program) {
   const vertexBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
 
-// Triangle points (X: Y)
+  // Triangle points (X: Y)
   const vertexArray = [
      0.0,  0.5,
      0.5, -0.5,
@@ -58,6 +63,19 @@ function createTriangle(gl, program) {
 
   // Enable program
   gl.useProgram(program);
+
+
+  
+  // create background color vector
+  const vec3_backgroundColor = Color.fromHex('#3232ff').toVector();
+
+  // Get uniform variable location.
+  // We have to use uniform variables, because fragment shader
+  // didn't support arrtibutes
+  const loc_bgColor = gl.getUniformLocation(program, 'bgColor');
+  
+  // Put uniform variable
+  gl.uniform4fv(loc_bgColor, vec3_backgroundColor);
 
   // Draw:
   // 1. Shapes to use to draw
