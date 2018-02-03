@@ -23,24 +23,20 @@ function main() {
   })
 }
 
-function createSquare(gl, program) {
-  const buffVertex = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER);
-}
 
 function createTriangle(gl, program) {
   const vertexBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
 
   // Triangle points (X: Y)
-  const vertexArray = [
+  const triangleVertexArr = [
      0.0,  0.5,
      0.5, -0.5,
     -0.5, -0.5
   ];
 
   // Put points to buffer
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexArray), gl.STATIC_DRAW);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(triangleVertexArr), gl.STATIC_DRAW);
 
   // Get 'vertexPosition' attribute location
   const attrLoc_VertexPosition = gl.getAttribLocation(program, 'vertexPosition');
@@ -58,7 +54,7 @@ function createTriangle(gl, program) {
   gl.enableVertexAttribArray(attrLoc_VertexPosition);
 
   // Clear (RGBA)
-  gl.clearColor(0.75, 0.9, 1.0, 1.0);
+  gl.clearColor(0.2, 0.2, 0.2, 1.0);
   gl.clear(gl.COLOR_BUFFER_BIT);
 
   // Enable program
